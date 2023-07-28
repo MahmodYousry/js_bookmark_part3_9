@@ -47,7 +47,7 @@ function displaySites(list) {
       cartona += `
         <tr>
           <td class="align-middle">${ i + 1 }</td>
-          <td class="text-capitalize align-middle">${list[i].newName ? list[i].newName : list[i].siteName}</td>
+          <td class="text-capitalize align-middle">${ list[i].siteName }</td>
           <td class="align-middle"><a class="btn btn-info text-light" href="http://${list[i].siteLink}" target="_blank"><i class="fa fa-eye fa-fw me-2"></i>Visit</a></td>
           <td class="align-middle">
             <button onclick="editSite(${i})" class="btn btn-warning text-capitalize text-light"><i class="fa fa-edit fa-fw me-2"></i>Edit</button>
@@ -60,9 +60,35 @@ function displaySites(list) {
   
       tbody.innerHTML = cartona;
     }
-  }
+    console.log(list)
+  }  
+}
 
+function displaySearch(list) {
+  var cartona = '';
+
+  if (list.length == 0) {
+    tbody.innerHTML = "";
+  } else {
+    for (var i = 0; i < list.length; i++) {
+      cartona += `
+        <tr>
+          <td class="align-middle">${ i + 1 }</td>
+          <td class="text-capitalize align-middle">${ list[i].newName ? list[i].newName : list[i].siteName }</td>
+          <td class="align-middle"><a class="btn btn-info text-light" href="http://${list[i].siteLink}" target="_blank"><i class="fa fa-eye fa-fw me-2"></i>Visit</a></td>
+          <td class="align-middle">
+            <button onclick="editSite(${i})" class="btn btn-warning text-capitalize text-light"><i class="fa fa-edit fa-fw me-2"></i>Edit</button>
+          </td>
+          <td class="align-middle">
+            <button onclick="deleteSite(${i})" class="btn btn-danger text-capitalize text-light"><i class="fa fa-trash fa-fw me-2"></i>delete</button>
+          </td>
+        </tr>
+      `;
   
+      tbody.innerHTML = cartona;
+    }
+    console.log(list)
+  }  
 }
 
 // edit
@@ -118,17 +144,19 @@ function deleteSite(index) {
 
 function searchByName() {
   var foundedItems = [];
+
   var term = document.getElementById('searchByName').value;
+
   for (var i = 0; i < siteList.length; i++) {
     if (siteList[i].siteName.toLowerCase().includes(term.toLowerCase()) == true) {
 
       siteList[i].newName = siteList[i].siteName.toLowerCase().replace(term.toLowerCase(), `<span class="text-danger">${term}</span>`);
       // console.log('Founded', i);
-     foundedItems.push(siteList[i]);
+      foundedItems.push(siteList[i]);
       
     }
   }
-  displaySites(foundedItems);
 
+  displaySearch(foundedItems);
 }
 
