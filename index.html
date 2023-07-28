@@ -4,7 +4,11 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>fokir test</title>
+    <title>Sites Bookmark</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;900&display=swap" rel="stylesheet">
 
     <!-- Bootstrap 5.3 -->
     <link rel="stylesheet" href="css/bootstrap.min.css" />
@@ -15,28 +19,31 @@
 
 
     <div class="container my-4">
+
       <div class="mb-3">
-        <label for="productName" class="form-label">Product Name</label>
-        <input type="text" name="" id="productName" class="form-control" placeholder="Product Name">
-      </div>
-      <div class="mb-3">
-        <label for="productPrice" class="form-label">Product Price</label>
-        <input type="text" name="" id="productPrice" class="form-control" placeholder="Product Price">
-      </div>
-      <div class="mb-3">
-        <label for="productModel" class="form-label">Product Model</label>
-        <input type="text" name="" id="productModel" class="form-control" placeholder="Product Model">
-      </div>
-      <div class="mb-3">
-        <label for="productDesc" class="form-label">Product Desc</label>
-        <textarea type="text" name="" id="productDesc" class="form-control" placeholder="Product Desc"></textarea>
+        <h1 class="text-center">Bookmark</h1>
+        <h2 class="text-center">Bookmark your favorite sites</h2>
       </div>
 
-      <div id="options">
-        <button onclick="addProduct()" class="text-capitalize btn btn-primary px-3">
-          <i class="fa fa-plus fa-fw me-2"></i>add product</button>
+      <div class="mb-3">
+        <label for="siteName" class="form-label"><i class="fa fa-book fa-fw me-2"></i>Site Name</label>
+        <input type="text" name="" id="siteName" class="form-control" placeholder="Site Name">
+      </div>
+      <div class="mb-3">
+        <label for="siteLink" class="form-label"><i class="fa-solid fa-link me-2"></i>Site URL</label>
+        <input type="text" name="" id="siteLink" class="form-control" placeholder="example: google.com">
+      </div>
+
+      <div id="options" class="mb-4 d-flex justify-content-center gap-2">
+        <button onclick="addSite()" class="text-capitalize btn btn-primary px-3">
+          <i class="fa fa-plus fa-fw me-1"></i>add site</button>
       </div>
       
+      <div class="mb-3">
+        <label for="searchByName" class="form-label"><i class="fa-solid fa-magnifying-glass me-2"></i>Search</label>
+        <input oninput="searchByName()" type="text" name="" id="searchByName" class="form-control" placeholder="Search By Name">
+      </div>
+
     </div>
 
     <div class="container my-4">
@@ -45,11 +52,9 @@
           <thead>
             <tr>
               <th>id</th>
-              <th>Product Name</th>
-              <th>Product Price</th>
-              <th>Product Model</th>
-              <th>Product Desc</th>
-              <th>Update</th>
+              <th>Website Name</th>
+              <th>Website Link</th>
+              <th>Edit</th>
               <th>Delete</th>
             </tr>
           </thead>
