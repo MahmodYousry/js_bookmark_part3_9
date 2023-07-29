@@ -3,6 +3,7 @@
 var siteName  = document.getElementById('siteName');
 var siteLink  = document.getElementById('siteLink');
 var options   = document.getElementById('options');
+var modalButton   = document.getElementById('modal-button');
 var tbody     = document.getElementById('tbody');
 
 
@@ -16,27 +17,35 @@ if (localArray) {
 
 displaySites(siteList);
 
+// create
 function addSite() {
 
-  // make new site using fields
-  var newSite = {
-    siteName : siteName.value,
-    siteLink : siteLink.value,
-  };
+  if (validationSites() == true) {
 
-  // put the new values in the end of the array
-  siteList.push(newSite);
+    // make new site using fields
+    var newSite = {
+      siteName : siteName.value,
+      siteLink : siteLink.value,
+    };
 
-  // store the new array after pushing new object inside it
-  localStorage.setItem("siteList", JSON.stringify(siteList));
+    // put the new values in the end of the array
+    siteList.push(newSite);
 
-  // display the products inside the array
-  displaySites(siteList);
+    // store the new array after pushing new object inside it
+    localStorage.setItem("siteList", JSON.stringify(siteList));
 
-  // resets all the fields
-  resetFields();
+    // display the sites inside the array
+    displaySites(siteList);
+
+    // resets all the fields
+    resetFields();
+
+  } else {
+    modalButton.click();
+  }
 }
 
+// show
 function displaySites(list) {
   var cartona = '';
 
@@ -60,10 +69,10 @@ function displaySites(list) {
   
       tbody.innerHTML = cartona;
     }
-    console.log(list)
   }  
 }
 
+// show search
 function displaySearch(list) {
   var cartona = '';
 
@@ -141,7 +150,7 @@ function deleteSite(index) {
   displaySites(siteList);
 }
 
-
+// search
 function searchByName() {
   var foundedItems = [];
 
@@ -158,5 +167,15 @@ function searchByName() {
   }
 
   displaySearch(foundedItems);
+}
+
+// validation
+function validationSites() {
+  var regex = /\.[A-Za-z]{2,10}$/;
+  if (regex.test(siteLink.value) == true) {
+    return true;
+  } else {
+    return false;
+  }
 }
 
