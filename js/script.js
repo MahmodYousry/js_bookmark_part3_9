@@ -17,10 +17,14 @@ if (localArray) {
 
 displaySites(siteList);
 
+siteLink.addEventListener('keyup', function () {
+  validationSites();
+});
+
 // create
 function addSite() {
 
-  if (validationSites() == true) {
+  if (validationSites()) {
 
     // make new site using fields
     var newSite = {
@@ -173,8 +177,10 @@ function searchByName() {
 function validationSites() {
   var regex = /\.[A-Za-z]{2,10}$/;
   if (regex.test(siteLink.value) == true) {
+    siteLink.style = "border: 1px solid #dee2e6";
     return true;
   } else {
+    siteLink.style = "border: 1px solid red";
     return false;
   }
 }
